@@ -4,7 +4,8 @@
   "description": "Backend for Orbit project",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +20,7 @@
   "homepage": "https://github.com/cjjenkinson/orbit-server#readme",
   "dependencies": {
     "atob": "^2.0.3",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^2.0.1",
     "dotenv": "^5.0.1",
     "kcors": "^2.2.1",
     "koa": "^2.5.0",
@@ -31,18 +32,18 @@
     "koa-router": "^7.4.0",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.10",
-    "nodemon": "^1.17.2",
     "uuid": "^3.2.1",
     "validator": "^9.4.1"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
     "eslint-plugin-json": "^1.2.0",
-    "mocha": "^2.1.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
     "supertest": "^2.0.0"
   },
   "engines": {
-    "node": "6.4.0",
-    "npm": "3.10.7"
+    "node": "9.7.1",
+    "npm": "5.6.0"
   }
 }

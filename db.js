@@ -10,21 +10,17 @@ require('dotenv').config();
  */
 
 const options = {
-  server: {
-    socketOptions: {
-      keepAlive: 300000,
-      connectTimeoutMS: 30000
-    }
-  },
-  replset: {
-    socketOptions: {
-      keepAlive: 300000,
-      connectTimeoutMS: 30000
-    }
-  }
+  keepAlive: 300000,
+  connectTimeoutMS: 30000,
 };
 
-const mongodbUri = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+const dbCredentials = process.env.DB_USERNAME && process.env.DB_PASSWORD
+  ? `${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@`
+  : '';
+const dbPort = process.env.DB_PORT
+  ? `:${process.env.DB_PORT}`
+  : '';
+const mongodbUri = `mongodb://${dbCredentials}${process.env.DB_HOST}${dbPort}/${process.env.DB_NAME}`;
 
 mongoose.connect(mongodbUri, options)
   .then(() => {
@@ -32,16 +28,4 @@ mongoose.connect(mongodbUri, options)
   })
   .catch(err => {
     console.log('Connection error', err);
-  })
-
-
-// CONNECTING TO LOCAL DATABASE
-// const mongoose = require('mongoose');
-//
-// mongoose.connect('mongodb://localhost/orbit-database')
-//   .then(() => {
-//     console.log('Connected to Orbits database');
-//   })
-//   .catch(err => {
-//     console.log('Cannot connect, wrong path');
-//   })
+  });
